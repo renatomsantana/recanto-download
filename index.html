@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>recanto — baixar</title>
+    <meta name="description" content="Chat, voz e compartilhamento de tela com os amigos. App para Windows e pelo navegador." />
+    <meta name="theme-color" content="#131417" />
+    <link rel="icon" type="image/png" href="./icon.png" />
+    <meta property="og:title" content="recanto" />
+    <meta property="og:description" content="Chat, voz e tela com os amigos." />
+    <meta property="og:image" content="./icon-512.png" />
+    <style>
+      /* Mesmas cores do app (web/src/styles.css). Sem build: e um arquivo so. */
+      :root {
+        --bg-0: #131417; --bg-1: #1a1c20; --bg-3: #26292e;
+        --line: #2c2f35; --line-strong: #3a3e45;
+        --text: #cfcdc6; --text-muted: #85827b; --text-strong: #f1efe9;
+        --accent: #ee8a3c; --accent-hover: #f79a50; --accent-ink: #1a1006;
+        --green: #6cbf84; --red: #e5645c; --r: 3px;
+        color-scheme: dark;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; min-height: 100vh; padding: 32px 20px 48px;
+        background: var(--bg-0); color: var(--text);
+        font: 15px/1.5 "Segoe UI", system-ui, Roboto, Helvetica, Arial, sans-serif;
+        display: flex; flex-direction: column; align-items: center;
+      }
+      .mono { font-family: Tahoma, Verdana, sans-serif; }
+      main { width: min(560px, 100%); }
+      header { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+      header img { width: 60px; height: 60px; border-radius: 12px; }
+      h1 { margin: 0; font-size: 30px; color: var(--accent); letter-spacing: -0.01em; }
+      .tag { margin: 2px 0 0; color: var(--text-muted); font-size: 14px; }
+      .card {
+        background: var(--bg-1); border: 1px solid var(--line-strong); border-radius: var(--r);
+        padding: 22px; margin-top: 22px;
+      }
+      .baixar {
+        display: block; text-align: center; text-decoration: none;
+        background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: 17px;
+        padding: 15px 20px; border-radius: var(--r); transition: background 0.12s;
+      }
+      .baixar:hover { background: var(--accent-hover); }
+      .baixar.off { background: var(--bg-3); color: var(--text-muted); cursor: default; }
+      .sub { text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 10px; }
+      h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin: 0 0 10px; font-weight: 600; }
+      .card + .card { margin-top: 14px; }
+      p { margin: 0 0 10px; }
+      p:last-child { margin-bottom: 0; }
+      ol { margin: 0; padding-left: 20px; }
+      li { margin-bottom: 6px; }
+      li:last-child { margin-bottom: 0; }
+      a { color: var(--accent); }
+      code { background: var(--bg-3); border: 1px solid var(--line); border-radius: var(--r); padding: 1px 5px; font-family: Tahoma, Verdana, sans-serif; font-size: 13px; }
+      .status { display: flex; align-items: center; gap: 8px; justify-content: center; margin-top: 18px; color: var(--text-muted); font-size: 13px; }
+      .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--text-muted); flex-shrink: 0; }
+      .dot.on { background: var(--green); }
+      .dot.off { background: var(--red); }
+      footer { color: var(--text-muted); font-size: 12px; margin-top: 26px; text-align: center; }
+      @media (max-width: 480px) { h1 { font-size: 25px; } .card { padding: 18px; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <img src="./icon.png" alt="" />
+        <div>
+          <h1>recanto</h1>
+          <p class="tag">Chat, voz e tela com os amigos — sem anúncio e sem gente estranha.</p>
+        </div>
+      </header>
+
+      <div class="card">
+        <a class="baixar" id="baixar" href="https://meurecanto.duckdns.org/update/recanto-setup-0.2.50.exe">
+          Baixar para Windows
+        </a>
+        <div class="sub"><span id="versao" class="mono">versão 0.2.50</span> · Windows 10/11 · instala e atualiza sozinho</div>
+        <div class="status">
+          <span class="dot" id="dot"></span>
+          <span id="estado">vendo se o servidor está de pé...</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Primeira vez</h2>
+        <ol>
+          <li>Baixe e abra o instalador. O Windows vai avisar que não conhece o programa (ele não é assinado):
+            clique em <strong>Mais informações</strong> e depois em <strong>Executar assim mesmo</strong>.</li>
+          <li>Crie sua conta no app. Se pedir <strong>código de convite</strong>, peça pro Rena.</li>
+          <li>Pronto. Da próxima vez que abrir com versão nova, ele atualiza sozinho.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h2>No celular, no Mac ou no Linux</h2>
+        <p>Não precisa instalar nada: abra <a href="https://meurecanto.duckdns.org">meurecanto.duckdns.org</a> no navegador.</p>
+        <p>No iPhone dá pra deixar com cara de app: <em>Compartilhar → Adicionar à Tela de Início</em>. E, se sair do
+          app no meio da call, ligue o <strong>modo segundo plano</strong> (o botão da janelinha no painel de voz) pro som continuar.</p>
+      </div>
+
+      <footer>feito em casa · <span class="mono">recanto</span></footer>
+    </main>
+
+    <script>
+      // O servidor publica o latest.yml do auto-update; a pagina le dali a versao atual, entao o link
+      // acompanha sozinho a cada update novo. Se o servidor estiver desligado, fica o link do HTML.
+      const SERVIDOR = "https://meurecanto.duckdns.org";
+      const mb = (b) => (b / 1024 / 1024).toFixed(0) + " MB";
+
+      (async () => {
+        const dot = document.getElementById("dot");
+        const estado = document.getElementById("estado");
+        try {
+          const r = await fetch(SERVIDOR + "/update/latest.yml", { cache: "no-store" });
+          if (!r.ok) throw new Error(r.status);
+          const txt = await r.text();
+          const versao = /^version:\s*(.+)$/m.exec(txt)?.[1]?.trim();
+          const arquivo = /^path:\s*(.+)$/m.exec(txt)?.[1]?.trim();
+          const tamanho = Number(/^\s+size:\s*(\d+)$/m.exec(txt)?.[1] ?? 0);
+          if (versao && arquivo) {
+            document.getElementById("baixar").href = SERVIDOR + "/update/" + arquivo;
+            document.getElementById("versao").textContent = "versão " + versao + (tamanho ? " · " + mb(tamanho) : "");
+          }
+          dot.className = "dot on";
+          estado.textContent = "servidor online";
+        } catch {
+          dot.className = "dot off";
+          estado.textContent = "servidor desligado agora — o download pode falhar";
+        }
+      })();
+    </script>
+  </body>
+</html>
